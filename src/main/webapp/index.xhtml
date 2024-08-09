@@ -46,7 +46,7 @@
                 </div>
             </div>
         </nav>
-        <h:form id="studentForm">
+        <h:form id="studentForm" class="form">
             <h:messages/>
             <h:panelGrid columns="2"
                          columnClasses="rightAlign,leftAlign">
@@ -54,35 +54,40 @@
                 </h:outputLabel>
                 <h:inputText id="firstName"
                              label="First Name"
-                             value="#{student.firstName}"
+                             value="#{studentController.student.firstName}"
                              required="true"
                              validator="#{alphaValidator.validateAlpha}">
                     <f:validateLength minimum="3" maximum="30"/>
-                    
+
                 </h:inputText>
                 <h:outputLabel for="lastName" value="Last Name:">
                 </h:outputLabel>
                 <h:inputText id="lastName"
                              label="Last Name"
-                             value="#{student.lastName}"
+                             value="#{studentController.student.lastName}"
                              required="true"
                              validator="#{alphaValidator.validateAlpha}">
                     <f:validateLength minimum="3" maximum="30"/>
-                    
+
                 </h:inputText>
                 <h:outputLabel for="email" value="Email:">
                 </h:outputLabel>
                 <h:inputText id="email"
                              label="Email"
-                             value="#{student.email}">
+                             value="#{studentController.student.email}">
                     <f:validateLength minimum="3" maximum="30"/>
-          <f:validator validatorId="emailValidator" />
-                    
+                    <f:validator validatorId="emailValidator" />
+
                 </h:inputText>
                 <h:panelGroup></h:panelGroup>
-                <h:commandButton action="information" value="Save">
+                <h:commandButton action="#{studentController.saveStudent()}" value="Save">
                 </h:commandButton>
             </h:panelGrid>
         </h:form>
+        <h2>Get Student list: </h2>
+        <h:form id="studentListForm">
+            <h:commandLink value="Get student list" action="#{studentController.getStudents()}"/>
+        </h:form>  
+
     </h:body>
 </html>
